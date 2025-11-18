@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuka Madawalage | Mechatronic Engineer</title>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #d0d0d0;
+            --text-muted: #b0b0b0;
+            --text-dimmed: #808080;
+            --accent-color: #70b5f9;
+            --accent-hover: #5099e0;
+            --border-color: #333333;
+            --card-border: #2a2a2a;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f5;
+            --bg-tertiary: #e0e0e0;
+            --text-primary: #1a1a1a;
+            --text-secondary: #333333;
+            --text-muted: #666666;
+            --text-dimmed: #999999;
+            --accent-color: #0a66c2;
+            --accent-hover: #004182;
+            --border-color: #d0d0d0;
+            --card-border: #e0e0e0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 30px;
+            padding: 10px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--bg-tertiary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .theme-toggle i {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover i {
+            transform: rotate(20deg);
+        }
+
+        .theme-toggle span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        [data-theme="light"] .moon-icon {
+            display: none;
+        }
+
+        [data-theme="dark"] .sun-icon,
+        body:not([data-theme]) .sun-icon {
+            display: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            padding-top: 80px;
+        }
+
+        .header {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .header-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .title {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .title a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .title a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        .bio {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .profile-photo {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--border-color);
+            transition: border-color 0.3s;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .social-links a i {
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .social-links a.email:hover {
+            background-color: #EA4335;
+            border-color: #EA4335;
+            color: white;
+        }
+
+        .social-links a.linkedin:hover {
+            background-color: #0A66C2;
+            border-color: #0A66C2;
+            color: white;
+        }
+
+        .social-links a.github:hover {
+            background-color: #333;
+            border-color: #333;
+            color: white;
+        }
+
+        .social-links a.phone:hover {
+            background-color: #25D366;
+            border-color: #25D366;
+            color: white;
+        }
+
+        .social-links a.kaggle:hover {
+            background-color: #20BEFF;
+            border-color: #20BEFF;
+            color: white;
+        }
+
+        .social-links a::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            border: 1px solid var(--border-color);
+        }
+
+        .social-links a:hover::after {
+            opacity: 1;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn-download {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            padding: 12px 28px;
+            border-radius: 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-download:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(112, 181, 249, 0.3);
+        }
+
+        .btn-download i {
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+        }
+
+        .btn-download:hover i {
+            transform: translateY(2px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: var(--bg-secondary);
+            margin: 5% auto;
+            padding: 0;
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            animation: slideDown 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-body::-webkit-scrollbar-track {
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 10px;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-hover);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+            color: white;
+            padding: 25px 30px;
+            border-radius: 18px 18px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .modal-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .modal-close {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 30px;
+            overflow-y: auto;
+            max-height: calc(85vh - 100px);
+            scroll-behavior: smooth;
+        }
+
+        .project-gallery {
+            margin: 25px 0;
+        }
+
+        .project-gallery h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            cursor: pointer;
+            aspect-ratio: 4/3;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s;
+            background-color: var(--bg-tertiary);
+        }
+
+        .gallery-item:hover {
+            border-color: var(--accent-color);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(112, 181, 249, 0.3);
+        }
+
+        .gallery-item img,
+        .gallery-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img,
+        .gallery-item:hover video {
+            transform: scale(1.1);
+        }
+
+        .gallery-item .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item .image-overlay i {
+            color: white;
+            font-size: 2rem;
+        }
+
+        .video-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            z-index: 1;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s;
+        }
+
+        .lightbox-content {
+            position: relative;
+            margin: auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 1200px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-image,
+        .lightbox-video {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
+        }
+
+        .lightbox-caption {
+            display: none;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 3001;
+            transition: transform 0.3s;
+        }
+
+        .lightbox-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            padding: 20px;
+            user-select: none;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--accent-color);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: 30px;
+        }
+
+        .lightbox-next {
+            right: 30px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1rem;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            border-radius: 20px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .experience-card {
+            background-color: var(--bg-secondary);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-color: var(--accent-color);
+        }
+
+        .experience-header {
+            margin-bottom: 15px;
+        }
+
+        .experience-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .experience-company {
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .experience-date {
+            color: var(--text-dimmed);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .experience-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-card li {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .experience-card li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            background-color: var(--bg-tertiary);
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--accent-color);
+        }
+
+        .project-meta {
+            color: var(--text-dimmed);
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .achievement-card {
+            background-color: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border-left: 3px solid var(--accent-color);
+            transition: all 0.3s;
+        }
+
+        .achievement-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .achievement-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .achievement-meta {
+            color: var(--text-dimmed);
+            font-size: 0.85rem;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background-color: var(--bg-secondary);
+            color: var(--accent-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(112, 181, 249, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-dimmed);
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 8px 15px;
+            }
+
+            .theme-toggle span {
+                display: none;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .name {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding-top: 60px;
+            }
+
+            .modal-content {
+                margin: 5% auto;
+                width: 95%;
+                max-height: 90vh;
+            }
+
+            .modal-header {
+                padding: 20px;
+            }
+
+            .modal-header h2 {
+                font-size: 1.2rem;
+            }
+
+            .modal-body {
+                padding: 20px;
+                max-height: calc(90vh - 80px);
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <i class="fas fa-sun sun-icon"></i>
+        <i class="fas fa-moon moon-icon"></i>
+        <span>Light Mode</span>
+    </button>
+
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="name">Manuka Madawalage</h1>
+                <p class="title">Mechatronic Engineering Student | <a href="https://kdu.ac.lk" target="_blank">General Sir John Kotelawala Defence University</a></p>
+                <p class="title"><i class="fas fa-map-marker-alt" style="color: var(--accent-color);"></i> Sri Lanka · Rathmalana, Western Province</p>
+                
+                <p class="bio">
+                    Final-year Mechatronic Engineering student specializing in robotics, IoT, AI-driven automation, and embedded systems. Experienced in firmware development, PLC programming, and industrial automation. Passionate about integrating intelligent hardware through emerging technologies. Aspiring to contribute to innovative automation projects and smart system solutions.
+                </p>
+
+                <div class="social-links">
+                    <a href="mailto:mthivankara@gmail.com" class="email" data-tooltip="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/manuka-madawalage-1727b9312/" target="_blank" class="linkedin" data-tooltip="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/your-github-username" target="_blank" class="github" data-tooltip="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="tel:+94773177105" class="phone" data-tooltip="Phone">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                    <a href="https://www.kaggle.com/manukathivankara" target="_blank" class="kaggle" data-tooltip="Kaggle">
+                        <i class="fab fa-kaggle"></i>
+                    </a>
+                </div>
+
+                <div class="action-buttons">
+                    <a href="Manuka_Madawalage_CV.pdf" download="Manuka_Madawalage_CV.pdf" class="btn-download">
+                        <i class="fas fa-download"></i>
+                        Download CV
+                    </a>
+                </div>
+            </div>
+
+            <img src="profile.jpg" alt="Manuka Madawalage" class="profile-photo" onerror="this.src='https://via.placeholder.com/300/1a1a1a/70b5f9?text=MM'">
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">Experience</h2>
+            
+            <div class="experience-card">
+                <div class="experience-header">
+                    <h3 class="experience-title">Firmware & Hardware Development Intern</h3>
+                    <p class="experience-company">MAS Twinery Innovation</p>
+                    <p class="experience-date">Jun 2024 - Aug 2024 · 3 months · Sri Lanka</p>
+                </div>
+                <ul>
+                    <li>Developed STM32-based GUI firmware for Haddenham Desktop Version using C++, implementing advanced control algorithms and user interface systems</li>
+                    <li>Designed comprehensive PCB layouts and firmware for multiple testing jigs including Manifold, Fan, Display, and UI systems, ensuring robust quality control processes</li>
+                    <li>Performed precision sensor calibration and system assembly with over 95% accuracy rate</li>
+                    <li>Modernized legacy firmware for Overpressure Valve Testing Gig, improving system reliability by 40% and test accuracy metrics</li>
+                </ul>
+            </div>
+
+            <div class="experience-card">
+                <div class="experience-header">
+                    <h3 class="experience-title">PLC Systems Developer (Training)</h3>
+                    <p class="experience-company">Sri Lanka Robotics Institute</p>
+                    <p class="experience-date">Feb 2024 · 1 month · Sri Lanka</p>
+                </div>
+                <ul>
+                    <li>Designed and programmed sophisticated PLC-controlled systems: Chemical Treatment Plant, Pneumatic Pick & Place, and Elevator Prototype</li>
+                    <li>Utilized Siemens Step7 and Mitsubishi STL/Ladder logic for comprehensive system control and automation</li>
+                    <li>Developed expertise in industrial automation standards and control system architecture</li>
+                    <li>Implemented safety protocols and fail-safe mechanisms for critical industrial applications</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Projects</h2>
+            
+            <div class="projects-grid">
+                <div class="project-card" onclick="openProjectModal('robot')">
+                    <img src="projects/assistive-robot.jpg" alt="Assistive Robot" class="project-image" onerror="this.src='https://via.placeholder.com/400x300/1a1a1a/70b5f9?text=Assistive+Robot'">
+                    <div class="project-content">
+                        <h3 class="project-title">Socially Assistive Robot for Dementia & Alzheimer's Patients</h3>
+                        <p class="project-meta">ESP32, ToF Sensor, Raspberry Pi 4, YOLOv5, PD Control, IoT, WhatsApp API · Sep 2024</p>
+                        <p class="project-description">
+                            Developed a real-time fall detection system using YOLOv5 on Raspberry Pi 4. Implemented autonomous navigation with ESP32, ToF sensors, and PD control for obstacle avoidance.
+                        </p>
+                        <div style="color: var(--accent-color); font-size: 0.85rem; margin-top: 10px;">
+                            <i class="fas fa-hand-pointer"></i> Click for more details
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openProjectModal('perfume')">
+                    <img src="projects/perfume-system.jpg" alt="AI Perfume System" class="project-image" onerror="this.src='https://via.placeholder.com/400x300/1a1a1a/70b5f9?text=AI+Perfume+System'">
+                    <div class="project-content">
+                        <h3 class="project-title">AI-Based Personalized Perfume Mixing System</h3>
+                        <p class="project-meta">Python, AI/ML, IoT, Embedded Systems · Final Year Project · 2025</p>
+                        <p class="project-description">
+                            Leading development of AI-powered perfume customization system enabling fully automated fragrance composition. Integrated intelligent algorithms with precision hardware for dynamic scent profiles.
+                        </p>
+                        <div style="color: var(--accent-color); font-size: 0.85rem; margin-top: 10px;">
+                            <i class="fas fa-hand-pointer"></i> Click for more details
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openProjectModal('greenhouse')">
+                    <img src="projects/greenhouse.jpg" alt="IoT Greenhouse" class="project-image" onerror="this.src='https://via.placeholder.com/400x300/1a1a1a/70b5f9?text=IoT+Greenhouse'">
+                    <div class="project-content">
+                        <h3 class="project-title">Autonomous IoT Greenhouse Control System</h3>
+                        <p class="project-meta">IoT, Sensors, Embedded Systems, Automation · Group Project · 2024</p>
+                        <p class="project-description">
+                            Built autonomous control system achieving self-regulated climate and irrigation using real-time sensor data. Implemented automated environmental monitoring for optimal plant growth conditions.
+                        </p>
+                        <div style="color: var(--accent-color); font-size: 0.85rem; margin-top: 10px;">
+                            <i class="fas fa-hand-pointer"></i> Click for more details
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" onclick="openProjectModal('testing')">
+                    <img src="projects/testing-jigs.jpg" alt="Testing Jigs" class="project-image" onerror="this.src='https://via.placeholder.com/400x300/1a1a1a/70b5f9?text=Industrial+Jigs'">
+                    <div class="project-content">
+                        <h3 class="project-title">Industrial Testing Jigs Development</h3>
+                        <p class="project-meta">STM32, C++, PCB Design, Firmware · MAS Innovation · 2024</p>
+                        <p class="project-description">
+                            Developed firmware for 5 industrial testing jigs, enhancing production quality control by 40%. Integrated advanced sensor systems and automated testing protocols for manufacturing efficiency.
+                        </p>
+                        <div style="color: var(--accent-color); font-size: 0.85rem; margin-top: 10px;">
+                            <i class="fas fa-hand-pointer"></i> Click for more details
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-container">
+                <span class="skill-tag">C/C++</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">MATLAB</span>
+                <span class="skill-tag">STM32</span>
+                <span class="skill-tag">ESP32</span>
+                <span class="skill-tag">Raspberry Pi</span>
+                <span class="skill-tag">YOLOv5</span>
+                <span class="skill-tag">Firmware Development</span>
+                <span class="skill-tag">PLC Programming</span>
+                <span class="skill-tag">Siemens Step7</span>
+                <span class="skill-tag">Mitsubishi Ladder Logic</span>
+                <span class="skill-tag">SolidWorks</span>
+                <span class="skill-tag">AutoCAD</span>
+                <span class="skill-tag">PCB Design</span>
+                <span class="skill-tag">Robotics</span>
+                <span class="skill-tag">IoT</span>
+                <span class="skill-tag">AI/ML</span>
+                <span class="skill-tag">Computer Vision</span>
+                <span class="skill-tag">Embedded Systems</span>
+                <span class="skill-tag">Control Systems</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Certifications & Achievements</h2>
+            
+            <div class="achievement-card">
+                <h3 class="achievement-title">Siemens & Mitsubishi PLC Programming with Industrial Practical</h3>
+                <p class="achievement-meta">Sri Lanka Robotics Institute (SLIR) · Feb 2024</p>
+            </div>
+
+            <div class="achievement-card">
+                <h3 class="achievement-title">SFS SolidWorks Advanced Course</h3>
+                <p class="achievement-meta">Professional Certification · Jun 2024</p>
+            </div>
+
+            <div class="achievement-card">
+                <h3 class="achievement-title">Stanford Machine Learning: Regression & Classification</h3>
+                <p class="achievement-meta">Online Certification · Jun 2025</p>
+            </div>
+
+            <div class="achievement-card">
+                <h3 class="achievement-title">Secretary - Institution of Mechanical Engineers (IMechE)</h3>
+                <p class="achievement-meta">KDU Student Chapter · 2024-2025</p>
+            </div>
+
+            <div class="achievement-card">
+                <h3 class="achievement-title">Chief Operational Officer - FSKDU Formula Student Team</h3>
+                <p class="achievement-meta">FSKDU Racing · 2024-2025</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Education</h2>
+            
+            <div class="experience-card">
+                <div class="experience-header">
+                    <h3 class="experience-title">B.Sc. Eng. (Hons) in Mechatronic Engineering</h3>
+                    <p class="experience-company">General Sir John Kotelawala Defence University (KDU)</p>
+                    <p class="experience-date">Jan 2022 - Dec 2026 (Expected) · YGPA: 3.11</p>
+                </div>
+                <ul>
+                    <li>Specialization in Robotics, Automation, Control Systems, and IoT Integration</li>
+                    <li>Final Year Project: AI-Based Personalized Perfume Mixing System</li>
+                    <li>Active member of IMechE Student Chapter and Formula Student Team</li>
+                </ul>
+            </div>
+
+            <div class="experience-card">
+                <div class="experience-header">
+                    <h3 class="experience-title">GCE Advanced Level - Physical Science Stream</h3>
+                    <p class="experience-company">Kingswood College, Kandy</p>
+                    <p class="experience-date">2018 - 2020</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="projectModal" class="modal" onclick="closeModalOnOutsideClick(event)">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="projectModalTitle">Project Details</h2>
+                <span class="modal-close" onclick="closeProjectModal(); event.stopPropagation();">&times;</span>
+            </div>
+            <div class="modal-body" id="projectModalBody"></div>
+        </div>
+    </div>
+
+    <div id="mediaLightbox" class="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close" onclick="closeLightbox(); event.stopPropagation();">&times;</span>
+        <span class="lightbox-nav lightbox-prev" onclick="changeMedia(-1); event.stopPropagation();">&#10094;</span>
+        <span class="lightbox-nav lightbox-next" onclick="changeMedia(1); event.stopPropagation();">&#10095;</span>
+        <div class="lightbox-content">
+            <img id="lightboxImage" class="lightbox-image" src="" alt="" style="display: none;">
+            <video id="lightboxVideo" class="lightbox-video" controls style="display: none;">
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="lightbox-counter" id="lightboxCounter"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Manuka Madawalage. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">Built with passion for engineering and innovation</p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const themeLabel = document.querySelector('.theme-toggle span');
+            
+            if (currentTheme === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                themeLabel.textContent = 'Light Mode';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeLabel.textContent = 'Dark Mode';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const themeLabel = document.querySelector('.theme-toggle span');
+            
+            if (savedTheme === 'light') {
+                document.body.setAttribute('data-theme', 'light');
+                themeLabel.textContent = 'Dark Mode';
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+                themeLabel.textContent = 'Light Mode';
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
+                event.preventDefault();
+                toggleTheme();
+            }
+        });
+
+        // ============================================================
+        // PROJECT CONFIGURATION - CUSTOMIZE HERE
+        // ============================================================
+        // HOW TO ADD MEDIA:
+        // FOR IMAGES: { type: "image", src: "images/your-image.jpg", placeholder: "..." }
+        // FOR VIDEOS: { type: "video", src: "videos/your-video.mp4", placeholder: "..." }
+        // Add as many or as few as you want!
+        // If media array is empty [], no gallery will show
+        // ============================================================
+        
+        const projectDetails = {
+            robot: {
+                title: "Socially Assistive Robot for Dementia & Alzheimer's Patients",
+                meta: "ESP32, ToF Sensor, Raspberry Pi 4, YOLOv5, PD Control, IoT, WhatsApp API",
+                date: "September 2024",
+                description: "A comprehensive assistive robotic system designed to help elderly patients with dementia and Alzheimer's disease.",
+                features: [
+                    "<strong>Real-Time Fall Detection:</strong> Implemented YOLOv5 computer vision model on Raspberry Pi 4 for accurate fall detection with 95%+ accuracy",
+                    "<strong>Autonomous Navigation:</strong> Developed ESP32-based navigation system using Time-of-Flight sensors and PD control algorithms for smooth obstacle avoidance",
+                    "<strong>IoT Alert System:</strong> Integrated WhatsApp API for instant caregiver notifications via Wi-Fi connectivity",
+                    "<strong>Automated Medication Management:</strong> Built reminder system and medication dispensing mechanism",
+                    "<strong>Emergency Response:</strong> Real-time monitoring with automated alert system for immediate family notification"
+                ],
+                technologies: "ESP32 Microcontroller, Raspberry Pi 4, YOLOv5 (YOLO Object Detection), ToF Distance Sensors, PD Control Algorithm, Python, C/C++, IoT Protocols, WhatsApp API Integration",
+                impact: "Provides 24/7 assistance to vulnerable patients, reducing caregiver burden and improving patient safety through intelligent automation and real-time monitoring.",
+                media: [
+                    // EXAMPLE: Mix of images and videos
+                    { type: "image", src: "images/robot-1.jpg", placeholder: "https://via.placeholder.com/800x600/1a1a1a/70b5f9?text=Robot+Image+1" },
+                    { type: "image", src: "images/robot-2.jpg", placeholder: "https://via.placeholder.com/800x600/1a1a1a/70b5f9?text=Robot+Image+2" },
+                    { type: "video", src: "videos/robot-demo.mp4", placeholder: "https://via.placeholder.com/800x600/1a1a1a/70b5f9?text=Robot+Demo+Video" }
+                ]
+            },
+            perfume: {
+                title: "AI-Based Personalized Perfume Mixing System",
+                meta: "Arduino Mega 2560, Stepper Motors, AI/ML, IoT, Embedded Systems",
+                date: "Final Year Project · 2025",
+                description: "An intelligent fragrance composition system that uses AI to create personalized perfumes based on user preferences.",
+                features: [
+                    "<strong>AI-Powered Scent Profiling:</strong> Machine learning algorithms analyze user preferences to create unique fragrance combinations",
+                    "<strong>Precision Dispensing:</strong> Arduino Mega 2560 controls NEMA 17/23 stepper motors for accurate fragrance dispensing",
+                    "<strong>Automated Mixing:</strong> Solenoid valves enable precise control of multiple fragrance components",
+                    "<strong>User Interface:</strong> Intuitive interface for preference input and real-time mixing visualization",
+                    "<strong>Quality Control:</strong> Integrated limit switches and sensor feedback for consistent mixing accuracy"
+                ],
+                technologies: "Arduino Mega 2560, NEMA 17 & NEMA 23 Stepper Motors, A4988 Stepper Drivers, Solenoid Valves, Python, AI/ML Algorithms, IoT Integration, Embedded C/C++",
+                impact: "Revolutionizes the perfume industry by enabling mass customization, reducing waste, and providing personalized fragrance experiences at scale.",
+                media: [
+                    { type: "image", src: "images/perfume-1.jpg", placeholder: "https://via.placeholder.com/800x600/1a1a1a/70b5f9?text=Perfume+Image+1" },
+                    { type: "video", src: "videos/perfume-mixing.mp4", placeholder: "https://via.placeholder.com/800x600/1a1a1a/70b5f9?text=Mixing+Demo" }
+                ]
+            },
+            greenhouse: {
+                title: "Autonomous IoT Greenhouse Control System",
+                meta: "IoT, ESP32, Sensors, Embedded Systems, Automation",
+                date: "Group Project · 2024",
+                description: "A fully automated greenhouse management system that maintains optimal growing conditions through intelligent sensor-driven control.",
+                features: [
+                    "<strong>Climate Control:</strong> Automated temperature and humidity regulation using real-time sensor feedback",
+                    "<strong>Smart Irrigation:</strong> Soil moisture-based watering system with automated pump control",
+                    "<strong>Environmental Monitoring:</strong> Continuous tracking of temperature, humidity, light levels, and soil conditions",
+                    "<strong>IoT Dashboard:</strong> Real-time data visualization and remote monitoring capabilities",
+                    "<strong>Energy Efficient:</strong> Optimized control algorithms minimize power consumption while maximizing plant growth"
+                ],
+                technologies: "ESP32 Microcontroller, DHT22 Temperature/Humidity Sensors, Soil Moisture Sensors, Light Sensors, Relay Modules, Water Pumps, IoT Cloud Platform, C/C++",
+                impact: "Reduces water consumption by 40%, improves crop yield by 30%, and enables remote greenhouse management for farmers.",
+                media: [
+                    { type: "image", src: "images/greenhouse-1.jpg", placeholder: "https://via.placeholder.com/800x600/1a1a1a/70b5f9?text=Greenhouse+Image+1" },
+                    { type: "image", src: "images/greenhouse-2.jpg", placeholder: "https://via.placeholder.com/800x600/1a1a1a/70b5f9?text=Greenhouse+Image+2" }
+                ]
+            },
+            testing: {
+                title: "Industrial Testing Jigs Development",
+                meta: "STM32, C++, PCB Design, Firmware Development",
+                date: "MAS Twinery Innovation · June-August 2024",
+                description: "Developed comprehensive firmware and hardware solutions for industrial testing equipment used in manufacturing quality control.",
+                features: [
+                    "<strong>Multi-System Development:</strong> Created firmware for 5 different testing jigs (Manifold, Fan, Display, UI, Overpressure Valve)",
+                    "<strong>STM32 Integration:</strong> Programmed STM32 microcontrollers with advanced control algorithms and GUI systems",
+                    "<strong>PCB Design:</strong> Designed custom PCB layouts for each testing system ensuring robust quality control",
+                    "<strong>Precision Calibration:</strong> Implemented sensor calibration achieving 95%+ accuracy in testing procedures",
+                    "<strong>Legacy System Upgrade:</strong> Modernized old firmware improving system reliability by 40%"
+                ],
+                technologies: "STM32 Microcontroller, C/C++, PCB Design (KiCad/Altium), Firmware Development, Sensor Integration, Quality Control Protocols, GUI Development",
+                impact: "Enhanced production quality control efficiency by 40%, reduced testing time by 30%, and improved manufacturing accuracy across multiple product lines.",
+                media: [
+                    { type: "image", src: "images/testing-1.jpg", placeholder: "https://via.placeholder.com/800x600/1a1a1a/70b5f9?text=Testing+Image+1" },
+                    { type: "image", src: "images/testing-2.jpg", placeholder: "https://via.placeholder.com/800x600/1a1a1a/70b5f9?text=Testing+Image+1" },
+                    { type: "image", src: "images/testing-3.jpg", placeholder: "https://via.placeholder.com/800x600/1a1a1a/70b5f9?text=Testing+Image+1" },
+                    { type: "image", src: "images/testing-4.jpg", placeholder: "https://via.placeholder.com/800x600/1a1a1a/70b5f9?text=Testing+Image+1" }
+                ]
+            }
+        };
+
+        function openProjectModal(projectId) {
+            const project = projectDetails[projectId];
+            const modal = document.getElementById('projectModal');
+            const title = document.getElementById('projectModalTitle');
+            const body = document.getElementById('projectModalBody');
+
+            title.textContent = project.title;
+            
+            let featuresHTML = '<ul style="list-style: none; padding-left: 0;">';
+            project.features.forEach(feature => {
+                featuresHTML += `<li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                    <i class="fas fa-check-circle" style="position: absolute; left: 0; color: var(--accent-color); margin-top: 3px;"></i>
+                    ${feature}
+                </li>`;
+            });
+            featuresHTML += '</ul>';
+
+            let galleryHTML = '';
+            if (project.media && project.media.length > 0) {
+                const imageCount = project.media.filter(m => m.type === "image").length;
+                const videoCount = project.media.filter(m => m.type === "video").length;
+                let mediaLabel = '';
+                
+                if (imageCount > 0 && videoCount > 0) {
+                    mediaLabel = `${imageCount} image${imageCount !== 1 ? 's' : ''} & ${videoCount} video${videoCount !== 1 ? 's' : ''}`;
+                } else if (imageCount > 0) {
+                    mediaLabel = `${imageCount} image${imageCount !== 1 ? 's' : ''}`;
+                } else {
+                    mediaLabel = `${videoCount} video${videoCount !== 1 ? 's' : ''}`;
+                }
+                
+                galleryHTML = `
+                    <div class="project-gallery">
+                        <h3><i class="fas fa-images"></i> Project Gallery (${mediaLabel})</h3>
+                        <div class="gallery-grid">
+                `;
+                
+                project.media.forEach((item, index) => {
+                    const isVideo = item.type === "video";
+                    const icon = isVideo ? 'fa-play-circle' : 'fa-search-plus';
+                    
+                    galleryHTML += `
+                        <div class="gallery-item" onclick="openLightbox('${projectId}', ${index}); event.stopPropagation();">
+                            ${isVideo ? '<div class="video-badge"><i class="fas fa-video"></i> VIDEO</div>' : ''}
+                            ${isVideo ? 
+                                `<video muted><source src="${item.src}" type="video/mp4" onerror="this.parentElement.innerHTML='<img src=\\\"${item.placeholder}\\\" style=\\\"width:100%;height:100%;object-fit:cover;\\\">'"></video>` :
+                                `<img src="${item.src}" alt="Project Media ${index + 1}" onerror="this.src='${item.placeholder}'">`
+                            }
+                            <div class="image-overlay">
+                                <i class="fas ${icon}"></i>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                galleryHTML += `
+                        </div>
+                    </div>
+                `;
+            }
+
+            body.innerHTML = `
+                <div style="margin-bottom: 20px;">
+                    <p style="color: var(--text-dimmed); margin-bottom: 10px;"><i class="fas fa-code"></i> ${project.meta}</p>
+                    <p style="color: var(--text-dimmed); margin-bottom: 20px;"><i class="fas fa-calendar"></i> ${project.date}</p>
+                    <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1.05rem;">${project.description}</p>
+                </div>
+                
+                ${galleryHTML}
+                
+                <h3 style="color: var(--accent-color); margin-top: 30px; margin-bottom: 15px;">
+                    <i class="fas fa-star"></i> Key Features
+                </h3>
+                ${featuresHTML}
+                
+                <h3 style="color: var(--accent-color); margin-top: 30px; margin-bottom: 15px;">
+                    <i class="fas fa-cogs"></i> Technologies Used
+                </h3>
+                <p style="color: var(--text-secondary); line-height: 1.8;">${project.technologies}</p>
+                
+                <h3 style="color: var(--accent-color); margin-top: 30px; margin-bottom: 15px;">
+                    <i class="fas fa-chart-line"></i> Impact
+                </h3>
+                <p style="color: var(--text-secondary); line-height: 1.8;">${project.impact}</p>
+            `;
+
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeModalOnOutsideClick(event) {
+            if (event.target.id === 'projectModal') {
+                closeProjectModal();
+            }
+        }
+
+        let currentProject = null;
+        let currentMediaIndex = 0;
+
+        function openLightbox(projectId, mediaIndex) {
+            currentProject = projectId;
+            currentMediaIndex = mediaIndex;
+            
+            const project = projectDetails[projectId];
+            const mediaItem = project.media[mediaIndex];
+            
+            const lightbox = document.getElementById('mediaLightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxVideo = document.getElementById('lightboxVideo');
+            const lightboxCounter = document.getElementById('lightboxCounter');
+            const prevBtn = document.querySelector('.lightbox-prev');
+            const nextBtn = document.querySelector('.lightbox-next');
+            
+            lightboxImage.style.display = 'none';
+            lightboxVideo.style.display = 'none';
+            lightboxVideo.pause();
+            
+            if (mediaItem.type === "video") {
+                lightboxVideo.src = mediaItem.src;
+                lightboxVideo.style.display = 'block';
+                lightboxVideo.onerror = function() {
+                    this.style.display = 'none';
+                    lightboxImage.src = mediaItem.placeholder;
+                    lightboxImage.style.display = 'block';
+                };
+            } else {
+                lightboxImage.src = mediaItem.src;
+                lightboxImage.style.display = 'block';
+                lightboxImage.onerror = function() {
+                    this.src = mediaItem.placeholder;
+                };
+            }
+            
+            lightboxCounter.textContent = `${mediaIndex + 1} / ${project.media.length}`;
+            
+            if (project.media.length <= 1) {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'flex';
+                nextBtn.style.display = 'flex';
+            }
+            
+            lightbox.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(event) {
+            if (!event || event.target.id === 'mediaLightbox' || event.target.classList.contains('lightbox-close')) {
+                const lightbox = document.getElementById('mediaLightbox');
+                const lightboxVideo = document.getElementById('lightboxVideo');
+                
+                lightboxVideo.pause();
+                lightbox.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function changeMedia(direction) {
+            if (!currentProject) return;
+            
+            const project = projectDetails[currentProject];
+            currentMediaIndex += direction;
+            
+            if (currentMediaIndex >= project.media.length) {
+                currentMediaIndex = 0;
+            } else if (currentMediaIndex < 0) {
+                currentMediaIndex = project.media.length - 1;
+            }
+            
+            openLightbox(currentProject, currentMediaIndex);
+        }
+
+        document.addEventListener('keydown', function(event) {
+            const lightbox = document.getElementById('mediaLightbox');
+            const projectModal = document.getElementById('projectModal');
+            
+            if (lightbox.style.display === 'block') {
+                if (event.key === 'ArrowRight') {
+                    changeMedia(1);
+                } else if (event.key === 'ArrowLeft') {
+                    changeMedia(-1);
+                } else if (event.key === 'Escape') {
+                    closeLightbox();
+                }
+            } else if (projectModal.style.display === 'block' && event.key === 'Escape') {
+                closeProjectModal();
+            }
+        });
+    </script>
+</body>
+</html>
